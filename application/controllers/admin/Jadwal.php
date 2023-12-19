@@ -9,6 +9,7 @@ class Jadwal extends CI_Controller
         $this->load->model('JadwalModel');
         $this->load->model('MapelModel');
         $this->load->model('GuruModel');
+        $this->load->model('Model_guru_kelas');
         $this->load->model('User_model');
         $this->load->model('KelasModel');
         $this->load->model('Tahun_model');
@@ -137,6 +138,7 @@ class Jadwal extends CI_Controller
             $data = [
                 'mapel_id' => $this->input->post('mapel_id'),
                 'guru_id' => $this->input->post('guru_id'),
+                'jabatan' => $this->input->post('jabatan'),
                 'hari' => $this->input->post('hari'),
                 'awal' => $jam_awal,
                 'akhir' => $jam_akhir,
@@ -178,6 +180,8 @@ class Jadwal extends CI_Controller
             'dataGuru' => $this->GuruModel->tampilGuru(),
             'dataKelas' => $this->KelasModel->tampilKelas(),
             'tahun'     => $this->Tahun_model->get_active_stats(),
+            'pengajar'      => $this->Model_guru_kelas->get_detail_data($id_jadwal),
+            'jabatan'   => ['Guru Kelas', 'Kepala Sekolah', 'TU', 'Guru BK'],
             'menu'          => 'jadwal',
             'breadcrumb'    => [
                 0 => (object)[
@@ -236,6 +240,7 @@ class Jadwal extends CI_Controller
                 'id_jadwal' => $id_jadwal,
                 'mapel_id' => $this->input->post('mapel_id'),
                 'guru_id' => $this->input->post('guru_id'),
+                'jabatan' => $this->input->post('jabatan'),
                 'hari' => $this->input->post('hari'),
                 'kelas_id' => $this->input->post('kelas_id'),
                 'id_tahun' => $this->input->post('tahun'),

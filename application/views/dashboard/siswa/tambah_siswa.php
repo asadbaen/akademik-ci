@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" id="nama_siswa" name="nama_siswa" class="form-control" placeholder="isi nama_siswa Siswa" value="<?php echo set_value('nama_siswa'); ?>">
+                                <input type="text" id="nama_siswa" name="nama_siswa" class="form-control" placeholder="isi Nama Siswa" value="<?php echo set_value('nama_siswa'); ?>">
                                 <?= form_error('nama_siswa', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="form-group">
@@ -54,8 +54,14 @@
                             </div>
                             <div class="form-group">
                                 <label>Agama</label>
-                                <input type="text" id="Agama" name="Agama" class="form-control" placeholder="isi Agama Siswa" value="<?php echo set_value('Agama'); ?>">
-                                <?= form_error('Agama', '<small class="text-danger">', '</small>'); ?>
+                                <select class="custom-select rounded-0" id="Agama" name="Agama">
+                                    <option value="">- Pilih Agama -</option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Kristen">Kristen</option>
+                                    <option value="Katolik">Katolik</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Budha">Budha</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label>

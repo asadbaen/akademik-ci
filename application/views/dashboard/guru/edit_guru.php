@@ -26,10 +26,7 @@
                                 <label>Email</label>
                                 <input type="email" id="email" name="email" class="form-control" placeholder="Nama Lengkap" value="<?= $guru['email']; ?>">
                             </div>
-                            <div class="form-group">
-                                <label>Jabatan</label>
-                                <input type="text" id="Jabatan" name="Jabatan" class="form-control" placeholder="isi Jabatan guru" value="<?= $guru['Jabatan']; ?>">
-                            </div>
+
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
                                 <select class="custom-select rounded-0" id="Jenis_kelamin" name="Jenis_kelamin">
@@ -52,9 +49,26 @@
                                 <input type="date" id="Tanggal_lahir" name="Tanggal_lahir" class="form-control" value="<?= $guru['Tanggal_lahir']; ?>">
                             </div>
                             <div class="form-group">
-                                <label>Agama</label>
-                                <input type="text" id="Agama" name="Agama" class="form-control" placeholder="isi Agama guru" value="<?= $guru['Agama']; ?>">
+                                <label for="Agama">Agama</label>
+                                <select class="custom-select rounded-0" id="Agama" name="Agama">
+                                    <option value="">- Pilih Agama -</option>
+                                    <?php
+                                    $agamaOptions = array('Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha');
+
+                                    foreach ($agamaOptions as $agamaOption) {
+                                        echo '<option value="' . $agamaOption . '"';
+
+                                        // Periksa apakah agama dari database cocok dengan opsi saat ini
+                                        if ($guru['Agama'] == $agamaOption) {
+                                            echo ' selected';
+                                        }
+
+                                        echo '>' . $agamaOption . '</option>';
+                                    }
+                                    ?>
+                                </select>
                             </div>
+
                             <div class="form-group">
                                 <label>Alamat</label>
                                 <input type="text" id="alamat" name="alamat" class="form-control" placeholder="isi Alamat guru" value="<?= $guru['alamat']; ?>">

@@ -17,26 +17,47 @@
                         <input type="hidden" name="id_jadwal" id="id_jadwal" value="<?= $jadwal['id_jadwal']; ?>">
                         <div class="card-body col-md-6">
                             <div class="form-group">
-                                <label>Mapel</label>
+                                <label for="mapel_id">Mapel</label>
                                 <select class="custom-select rounded-0" id="mapel_id" name="mapel_id">
+                                    <option value="">Pilih Mapel</option>
                                     <?php foreach ($dataMapel as $value) : ?>
-                                        <option value="<?php echo $value['id_mapel']; ?>" <?php if ($value == $jadwal['mapel_id']) echo 'selected'; ?>> <?= $value['kode_mapel']; ?> - <?= $value['nama_mapel']; ?></option>
+                                        <option value="<?php echo $value['id_mapel']; ?>" <?php if ($value['id_mapel'] == $jadwal['mapel_id']) echo 'selected'; ?>>
+                                            <?= $value['kode_mapel']; ?> - <?= $value['nama_mapel']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Kode Guru</label>
+                                <select class="custom-select rounded-0" id="guru_id" name="guru_id">
+                                    <option value="">Pilih Guru</option>
+                                    <?php foreach ($dataGuru as $value) : ?>
+                                        <option value="<?php echo $value['id_guru']; ?>" <?php if ($value['id_guru'] == $jadwal['guru_id']) echo 'selected'; ?>>
+                                            <?= $value['nama_guru']; ?> (<?php echo $value['Kode_guru']; ?>)
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Kode Guru</label>
-                                <select class="custom-select rounded-0" id="guru_id" name="guru_id">
-                                    <?php foreach ($dataGuru as $value) : ?>
-                                        <option value="<?php echo $value['id_guru']; ?>" <?php if ($value == $jadwal['guru_id']) echo 'selected'; ?>><?= $value['nama_guru']; ?> (<?php echo $value['Kode_guru']; ?>)</option>
+                                <label for="jabatan">Jabatan</label>
+                                <select class="form-control" id="jabatan" name="jabatan">
+                                    <?php foreach ($jabatan as $jb) : ?>
+                                        <?php if ($jb == $guru['jabatan']) : ?>
+                                            <option value="">Pilih Jabatan</option>
+                                            <option value="<?php echo $jb ?>" selected><?= $jb ?></option>
+                                        <?php else : ?>
+                                            <option value="<?php echo $jb ?>"><?= $jb ?></option>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </select>
+                                <?php echo form_error('jabatan', '<div class="text-danger small ml-3">', '</div>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Kelas</label>
                                 <select class="custom-select rounded-0" id="kelas_id" name="kelas_id">
                                     <?php foreach ($dataKelas as $value) : ?>
-                                        <option value="<?php echo $value['id_kelas']; ?>" <?php if ($value == $jadwal['kelas_id']) echo 'selected'; ?>><?= $value['nama_kelas']; ?></option>
+                                        <option value="<?php echo $value['id_kelas']; ?>" <?php if ($value['id_kelas'] == $jadwal['kelas_id']) echo 'selected'; ?>><?= $value['nama_kelas']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

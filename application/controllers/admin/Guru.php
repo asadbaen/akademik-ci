@@ -9,6 +9,7 @@ class Guru extends CI_Controller
         parent::__construct();
         $this->load->model('GuruModel');
         $this->load->model('User_model');
+        $this->load->model('Model_guru_kelas');
         $this->load->library('form_validation');
 
         $this->output->set_header('Cache-Control: no-cache, must-revalidate');
@@ -101,7 +102,6 @@ class Guru extends CI_Controller
     {
         $this->form_validation->set_rules('nip', 'nip', 'trim|required');
         $this->form_validation->set_rules('nama_guru', 'nama_guru Lengkap', 'trim|required');
-        $this->form_validation->set_rules('Jabatan', 'Jabatan', 'trim|required');
         $this->form_validation->set_rules('Jenis_kelamin', 'Jeniskelamin ', 'trim|required');
         $this->form_validation->set_rules('Tanggal_lahir', 'Tanggal lahir ', 'trim|required');
         $this->form_validation->set_rules('Tempat_lahir', 'Tempat lahir ', 'trim|required');
@@ -123,7 +123,6 @@ class Guru extends CI_Controller
                 'nip' => $this->input->post('nip'),
                 'nama_guru' => $this->input->post('nama_guru'),
                 'email' => $this->input->post('email'),
-                'Jabatan' => $this->input->post('Jabatan'),
                 'Jenis_kelamin' => $this->input->post('Jenis_kelamin'),
                 'Tanggal_lahir' => $this->input->post('Tanggal_lahir'),
                 'Tempat_lahir' => $this->input->post('Tempat_lahir'),
@@ -189,6 +188,7 @@ class Guru extends CI_Controller
             'foto'         => $data['foto'] != null ? $data['foto'] : 'user-placeholder.jpg',
             'guru'          => $guru,
             'enum_values' => $this->GuruModel->getEnumValues(),
+
             'menu'          => 'guru',
             'breadcrumb'    => [
                 0 => (object)[
@@ -267,7 +267,6 @@ class Guru extends CI_Controller
     {
         $this->form_validation->set_rules('nip', 'nip', 'trim|required');
         $this->form_validation->set_rules('nama_guru', 'nama_guru Lengkap', 'trim|required');
-        $this->form_validation->set_rules('Jabatan', 'Jabatan', 'trim|required');
         $this->form_validation->set_rules('Jenis_kelamin', 'Jeniskelamin ', 'trim|required');
         $this->form_validation->set_rules('Tanggal_lahir', 'Tanggal lahir ', 'trim|required');
         $this->form_validation->set_rules('Tempat_lahir', 'Tempat lahir ', 'trim|required');
@@ -291,8 +290,7 @@ class Guru extends CI_Controller
                 'id_guru' => $id_guru,
                 'nip' => $this->input->post('nip'),
                 'nama_guru' => $this->input->post('nama_guru'),
-                'email' => $this->input->post('email', TRUE),
-                'Jabatan' => $this->input->post('Jabatan'),
+                'email' => $this->input->post('email'),
                 'Jenis_kelamin' => $this->input->post('Jenis_kelamin'),
                 'Tanggal_lahir' => $this->input->post('Tanggal_lahir'),
                 'Tempat_lahir' => $this->input->post('Tempat_lahir'),
@@ -303,7 +301,7 @@ class Guru extends CI_Controller
             ];
 
             $dataUser = array(
-                'username'       => $this->input->post('email', TRUE),
+                'username'  => $this->input->post('email'),
             );
 
             $delete_foto_guru = $this->input->post('delete_foto_guru');
@@ -333,6 +331,8 @@ class Guru extends CI_Controller
                 }
             }
 
+
+
             $this->GuruModel->updateGuru($id_guru, $dataGuru);
 
             $this->db->where('username', $dataDetail['email']);
@@ -340,6 +340,7 @@ class Guru extends CI_Controller
 
 
 
+            $this->session->set_flashdata('message', 'Data Siswa Sucessfully');
             redirect('admin/guru');
         }
     }

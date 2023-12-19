@@ -41,6 +41,18 @@
                                 <?= form_error('id_guru', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="form-group">
+                                <label for="jabatan">Jabatan</label>
+                                <select class="form-control" id="jabatan" name="jabatan">
+                                    <option value="">--Pilih Jabatan--</option>
+                                    <option value="Guru Kelas">Guru Kelas</option>
+                                    <option value="Kepala Sekolah">Kepala Sekolah</option>
+                                    <option value="TU">TU</option>
+                                    <option value="Guru BK">Guru BK</option>
+                                </select>
+                                <?php echo form_error('jabatan', '<div class="text-danger small ml-3">', '</div>') ?>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Kelas</label>
                                 <select class="custom-select rounded-0" id="kelas_id" name="kelas_id">
                                     <option value="<?php echo set_value('kelas'); ?>">Pilih Kelas</option>

@@ -22,6 +22,12 @@
                 </div>
 
             <?php endif; ?>
+            <?php if ($this->session->userdata("level") == "guru") : ?>
+                <div class="nav-link" data-widget="navbar-search" href="#" role="button">
+                    <p>Hello, <?= $nama ?></p>
+                </div>
+
+            <?php endif; ?>
         </li>
 
         <!-- Messages Dropdown Menu -->

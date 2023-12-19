@@ -51,6 +51,7 @@
                                 </thead>
                                 <tbody>
 
+
                                     <?php foreach ($siswa as $key => $value) : ?>
 
                                         <tr>

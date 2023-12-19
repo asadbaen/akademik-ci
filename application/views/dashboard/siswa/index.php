@@ -3,6 +3,7 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+            <?php echo $this->session->flashdata('message'); ?>
             <div class="card col-md-12">
                 <div class="card-header">
                     <h3 class="card-title">DataTable Siswa</h3>

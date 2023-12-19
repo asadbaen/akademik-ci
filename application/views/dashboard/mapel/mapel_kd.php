@@ -1,8 +1,5 @@
 <div class="container-fluid">
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-book-open"></i> <?= $mapel['nama_mapel'] . ' / Level ' . $mapel['level'] ?></h1>
-    </div>
     <?php if ($this->session->flashdata('message')) : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?php echo $this->session->flashdata('message'); ?>

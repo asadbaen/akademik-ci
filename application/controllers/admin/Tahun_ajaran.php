@@ -60,7 +60,6 @@ class Tahun_ajaran extends CI_Controller
             $row[] = $no;
             $row[] = $item->nama;
             $row[] = $item->semester;
-            $row[] = ($item->shared == 1) ? '<strong class="badge badge-success"> Ya </strong>' : '<strong class="badge badge-danger"> Tidak </strong>';
             $row[] = ($item->status == 1) ? '<strong class="badge badge-success"> Aktif </strong>' : '<strong class="badge badge-danger"> Tidak Aktif</strong>';
             $row[] = anchor('admin/tahun_ajaran/edit/' . $item->id_tahun, '<div class="btn btn-sm btn-primary btn-xs mr-1 ml-1 mb-1"><i class="fa fa-edit"></i></div>')
                 . '<a href="javascript:;" onclick="confirmDelete(' . $item->id_tahun . ')" class="btn btn-sm btn-danger btn-xs mr-1 ml-1 mb-1"><i class="fa fa-trash"></i></a>';

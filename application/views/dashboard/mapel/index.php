@@ -32,7 +32,7 @@
                                         <div>
                                             <a class="btn btn-danger" href="<?php echo base_url() ?>admin/mapel/delete/<?= $key['id_mapel']; ?>">Delete</a>
                                             <a class="btn btn-primary" href="<?php echo base_url() ?>admin/mapel/edit/<?= $key['id_mapel'] ?>">Edit</a>
-                                            <a class="btn btn-info" href="<?php echo base_url() ?>admin/mapel/kd/<?= $key['id_mapel']; ?>">info Kd</a>
+                                            <a class="btn btn-info" href="<?php echo base_url() ?>admin/mapel/kd?id_mapel=<?= $key['id_mapel']; ?>">info Kd</a>
                                         </div>
                                     </td>
                                 </tr>

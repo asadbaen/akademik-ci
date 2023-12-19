@@ -4,12 +4,6 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="card col-md-12">
-                <div class="card-header">
-                    <h3 class="card-title">Data Jadwal</h3>
-                    <?= $this->session->flashdata('message'); ?>
-                    <?php echo validation_errors(); ?>
-                    <p><a class="btn btn-primary float-sm-right" href="<?php echo base_url() ?>admin/jadwal/create">Tambah Data</a></p>
-                </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
@@ -22,7 +16,6 @@
                                 <th>Hari</th>
                                 <th>Jam</th>
                                 <th>Tahun Ajaran</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,12 +53,6 @@
                                         <?php echo 'Semester' . ' : ' . $tahun['semester'] . ' - ' . $tahun['nama']; ?>
                                     </td>
 
-                                    <td>
-                                        <div>
-                                            <a class="btn btn-danger" href="<?php echo base_url() ?>admin/jadwal/delete/<?= $key['id_jadwal']; ?>">Delete</a>
-                                            <a class="btn btn-primary" href="<?php echo base_url() ?>admin/jadwal/edit/<?= $key['id_jadwal'] ?>">Edit</a>
-                                        </div>
-                                    </td>
 
                                 </tr>
                                 <?php $i++ ?>
@@ -80,7 +67,6 @@
                                 <th>Hari</th>
                                 <th>Jam</th>
                                 <th>Tahun Ajaran</th>
-                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>

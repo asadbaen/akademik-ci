@@ -6,7 +6,7 @@ class Laporan_nilai extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Tahun_model');
-        $this->load->model('Pengajar_model');
+        $this->load->model('Model_guru_kelas');
         $this->load->model('KelasModel');
         $this->load->model('User_model');
         $this->load->model('Laporan_model');
@@ -61,7 +61,7 @@ class Laporan_nilai extends CI_Controller
     public function get_kelas()
     {
         $id_tahun   = $this->input->post('id_tahun');
-        $data       =  $this->Pengajar_model->get_data_with_tahun($id_tahun);
+        $data       =  $this->Model_guru_kelas->get_data_with_tahun($id_tahun);
 
 
 

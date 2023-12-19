@@ -6,17 +6,15 @@ class Dashboard extends CI_Controller
         parent::__construct();
         $this->load->model('Tahun_model');
         $this->load->model('User_model');
-        $this->load->model('SiswaModel');
         $this->load->model('KelasModel');
         $this->load->model('GuruModel');
-
-
+        $this->load->model('Model_guru_kelas');
         if (!isset($this->session->userdata['username'])) {
             $this->session->set_flashdata('message', 'Anda Belum Login!');
             redirect('login');
         }
 
-        if ($this->session->userdata['level'] != 'admin') {
+        if ($this->session->userdata['level'] != 'guru') {
             $this->session->set_flashdata('message', 'Anda Belum Login!');
             redirect('login');
         }
@@ -24,21 +22,18 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        $tahun = $this->Tahun_model->get_active_stats();
-        // var_dump($tahun);
-        // die();
-        $data = $this->User_model->get_detail_admin($this->session->userdata['id_user'], $this->session->userdata['level']);
+        $data       = $this->User_model->get_detail_guru($this->session->userdata['id_user'], $this->session->userdata['level']);
+        $guru       = $this->GuruModel->get_detail_data(NULL, $data['id_user']);
+        $tahun      = $this->Tahun_model->get_active_stats();
         $data = array(
             'id_user'   => $data['id_user'],
-            'nama'      => $data['nama'],
-            'jabatan'      => $data['Jabatan'],
-            'foto'     => $data['foto'] != null ? $data['foto'] : 'user-placeholder.jpg',
+            'nama'      => $data['nama_guru'],
+            'foto'     => $data['foto_guru'] != null ? $data['foto_guru'] : 'user-placeholder.jpg',
             'level'     => $data['level'],
             'menu'      => 'dashboard',
             'tahun'     => $tahun,
-            'siswa'     => $this->SiswaModel->get_count_allsiswa($tahun),
-            'kelas'     => $this->KelasModel->get_count(),
-            'guru'      => $this->GuruModel->get_count($tahun),
+            'pengajar'  => $this->Model_guru_kelas->get_count_pengampu($guru['id_guru'], $tahun),
+            'siswa'     => $this->Model_guru_kelas->get_count_siswa($guru['id_guru'], $tahun),
             'breadcrumb' => [
                 0 => (object)[
                     'name' => 'Dashboard',
@@ -46,12 +41,10 @@ class Dashboard extends CI_Controller
                 ]
             ]
         );
-        // var_dump($data['foto']);
-        // die();
         $this->load->view('_partials/header.php');
         $this->load->view('_partials/navbar.php', $data);
         $this->load->view('_partials/sidebar.php', $data);
-        $this->load->view('dashboard/admin/dashboard.php', $data);
+        $this->load->view('guru/dashboard.php', $data);
         $this->load->view('_partials/footer.php');
     }
 }

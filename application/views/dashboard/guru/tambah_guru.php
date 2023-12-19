@@ -22,18 +22,13 @@
                             </div>
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" id="nama_guru" name="nama_guru" class="form-control" placeholder="nama_guru Lengkap" value="<?php echo set_value('nama_guru'); ?>">
+                                <input type="text" id="nama_guru" name="nama_guru" class="form-control" placeholder="Nama Lengkap" value="<?php echo set_value('nama_guru'); ?>">
                                 <?= form_error('nama_guru', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="email" id="email" name="email" class="form-control" placeholder="email" value="<?php echo set_value('nama_guru'); ?>">
                                 <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <label>Jabatan</label>
-                                <input type="text" id="Jabatan" name="Jabatan" class="form-control" placeholder="Jabatan" value="<?php echo set_value('Jabatan'); ?>">
-                                <?= form_error('Jabatan', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
@@ -59,8 +54,14 @@
                             </div>
                             <div class="form-group">
                                 <label>Agama</label>
-                                <input type="text" id="Agama" name="Agama" class="form-control" placeholder="Agama" value="<?php echo set_value('Agama'); ?>">
-                                <?= form_error('Agama', '<small class="text-danger">', '</small>'); ?>
+                                <select class="custom-select rounded-0" id="Agama" name="Agama">
+                                    <option value="">- Pilih Agama -</option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Kristen">Kristen</option>
+                                    <option value="Katolik">Katolik</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Budha">Budha</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label>

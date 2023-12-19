@@ -86,6 +86,9 @@ class SiswaModel extends CI_Model
         $this->db->where('td.id_kelas', $id_kelas);
         $this->db->where('td.tahun_ajaran', $tahun);
         return $this->db->get();
+
+        // var_dump($query->result_array());
+        // die();
     }
 
     public function get_count_allsiswa($tahun)

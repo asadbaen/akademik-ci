@@ -93,9 +93,9 @@ class MapelModel extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_matapelajaran tm');
         $this->db->join('tb_kd tk', 'tm.id_mapel = tk.id_mapel', 'inner');
-        $this->db->join('tb_pengajar tp', 'tm.id_mapel = tp.id_mapel', 'inner');
+        $this->db->join('tbl_jadwal_pelajaran tp', 'tm.id_mapel = tp.mapel_id', 'inner');
         $this->db->where('tm.id_mapel', $id_mapel);
-        $this->db->where('tp.id_kelas', $id_kelas);
+        $this->db->where('tp.kelas_id', $id_kelas);
         return $this->db->get()->result();
     }
 
@@ -104,9 +104,9 @@ class MapelModel extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_matapelajaran tm');
         $this->db->join('tb_kd tk', 'tm.id_mapel = tk.id_mapel', 'inner');
-        $this->db->join('tb_pengajar tp', 'tm.id_mapel = tp.id_mapel', 'inner');
+        $this->db->join('tbl_jadwal_pelajaran tp', 'tm.id_mapel = tp.mapel_id', 'inner');
         $this->db->where('tm.id_mapel', $id_mapel);
-        $this->db->where('tp.id_kelas', $id_kelas);
+        $this->db->where('tp.kelas_id', $id_kelas);
         $this->db->where('tk.jenis_penilaian', $jenis_nilai);
         $this->db->order_by('tk.nama_kd', 'asc');
         return $this->db->get()->result();
@@ -153,11 +153,11 @@ class MapelModel extends CI_Model
     {
         $this->db->select('tm.id_mapel, tm.nama_mapel');
         $this->db->from('tbl_matapelajaran tm');
-        $this->db->join('tb_pengajar tp', 'tm.id_mapel = tp.id_mapel', 'left');
-        $this->db->join('tbl_kelas tk', 'tp.id_kelas = tk.id_kelas', 'left');
+        $this->db->join('tbl_jadwal_pelajaran tp', 'tm.id_mapel = tp.mapel_id', 'left');
+        $this->db->join('tbl_kelas tk', 'tp.kelas_id = tk.id_kelas', 'left');
         $this->db->where('tk.id_kelas', $id_kelas);
         if ($id_guru) {
-            $this->db->where('tp.id_guru', $id_guru);
+            $this->db->where('tp.guru_id', $id_guru);
         }
 
         return $this->db->get();

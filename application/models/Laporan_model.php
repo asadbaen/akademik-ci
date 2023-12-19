@@ -10,7 +10,7 @@ class Laporan_model extends CI_Model
         $name_tahun     = $tahun['nama'];
         $get_mapel      = $this->get_mapel_pertahun($id_tahun, $id_kelas, $id_guru);
         $mapel          = ($get_mapel->num_rows() > 0) ? $get_mapel->result() : null;
-        $guru           = ($id_guru != null) ? " and tp.id_guru = $id_guru " : '';
+        $guru           = ($id_guru != null) ? " and tp.guru_id = $id_guru " : '';
         $query_join     = "";
         $query_select   = "";
         $query_select_injoin = "";
@@ -71,8 +71,8 @@ class Laporan_model extends CI_Model
                     tn.id_kd = tk.id_kd
                 inner join tbl_matapelajaran tm on
                     tk.id_mapel = tm.id_mapel
-                inner join tb_pengajar tp on
-                    tp.id_mapel = tm.id_mapel 
+                inner join tbl_jadwal_pelajaran tp on
+                    tp.mapel_id = tm.id_mapel 
                 where td.id_kelas = $id_kelas
                     and td.tahun_ajaran = '$name_tahun'
                     and tk.jenis_penilaian = '$jenis' $guru
@@ -104,11 +104,11 @@ class Laporan_model extends CI_Model
     {
         $this->db->select('tm.*');
         $this->db->from('tbl_matapelajaran tm');
-        $this->db->join('tb_pengajar tp', 'tm.id_mapel = tp.id_mapel', 'left');
+        $this->db->join('tbl_jadwal_pelajaran tp', 'tm.id_mapel = tp.mapel_id', 'left');
         $this->db->where('tp.id_tahun', $id_tahun);
-        $this->db->where('tp.id_kelas', $id_kelas);
+        $this->db->where('tp.kelas_id', $id_kelas);
         if ($id_guru != null) {
-            $this->db->where('tp.id_guru', $id_guru);
+            $this->db->where('tp.guru_id', $id_guru);
         }
         return $this->db->get();
     }

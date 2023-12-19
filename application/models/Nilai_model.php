@@ -33,10 +33,10 @@ class Nilai_model extends CI_Model
                             on tn.id_kd = tk.id_kd 
                         left join tbl_matapelajaran tm 
                             on tk.id_mapel = tm.id_mapel
-                        left join tb_pengajar tp 
-                            on tm.id_mapel = tp.id_mapel
+                        left join tbl_jadwal_pelajaran tp 
+                            on tm.id_mapel = tp.mapel_id
                         left join tbl_kelas tk2 
-                            on tp.id_kelas =tk2.id_kelas
+                            on tp.kelas_id =tk2.id_kelas
                         left join tbl_kelas_siswa td 
                             on tn.id_kelas_siswa = td.id_kelas_siswa
                         left join tb_tahunajaran tt 
@@ -96,8 +96,8 @@ class Nilai_model extends CI_Model
                 on tn.id_kelas_siswa = td.id_kelas_siswa
             left join tbl_siswa ts 
                 on td.id_siswa = ts.id_siswa
-            left join tb_pengajar tp 
-                on td.id_kelas = tp.id_kelas
+            left join tbl_jadwal_pelajaran tp 
+                on td.id_kelas = tp.kelas_id
             left join tb_tahunajaran tt 
                 on tp.id_tahun = tt.id_tahun  
             where
@@ -154,8 +154,8 @@ class Nilai_model extends CI_Model
                         on tn.id_kd = tk.id_kd
                     inner join tbl_matapelajaran tm 
                         on tk.id_mapel = tm.id_mapel
-                    inner join tb_pengajar tp 
-                        on tm.id_mapel = tp.id_mapel
+                    inner join tbl_jadwal_pelajaran tp 
+                        on tm.id_mapel = tp.mapel_id
                     inner join tb_tahunajaran tt 
                         on tp.id_tahun = tt.id_tahun
                     where tk.jenis_penilaian = '$jenis_nilai' and";
@@ -333,14 +333,13 @@ class Nilai_model extends CI_Model
                     tn.id_kd = tk.id_kd
                 inner join tbl_matapelajaran tm on
                     tk.id_mapel = tm.id_mapel
-                inner join tb_pengajar tp on
-                    tp.id_mapel = tm.id_mapel
+                inner join tbl_jadwal_pelajaran tp on
+                    tp.mapel_id = tm.id_mapel
                 inner join tb_tahunajaran tt on
                     tp.id_tahun = tt.id_tahun
                 where
                     td.id_kelas = $id_kelas
                     and tk.jenis_penilaian = 'PTS'
-                    and tt.shared = '1'
                     and tt.id_tahun = $id_tahun
                     and td.id_siswa = $id_siswa
                 group by
@@ -364,28 +363,30 @@ class Nilai_model extends CI_Model
                     tn.id_kd = tk.id_kd
                 inner join tbl_matapelajaran tm on
                     tk.id_mapel = tm.id_mapel
-                inner join tb_pengajar tp on
-                    tp.id_mapel = tm.id_mapel
+                inner join tbl_jadwal_pelajaran tp on
+                    tp.mapel_id = tm.id_mapel
                 inner join tb_tahunajaran tt on
                     tp.id_tahun = tt.id_tahun
                 where
                     td.id_kelas = $id_kelas
                     and tk.jenis_penilaian = 'PAS'
-                    and tt.shared = '1'
                     and tt.id_tahun = $id_tahun
                     and td.id_siswa = $id_siswa
                 group by
                     tm.id_mapel) pas on
                 pas.id_mapel = tm.id_mapel
-            left join tb_pengajar tp2 on
-                tp2.id_mapel = tm.id_mapel
+            left join tbl_jadwal_pelajaran tp2 on
+                tp2.mapel_id = tm.id_mapel
             where
-                tp2.id_kelas = $id_kelas
+                tp2.kelas_id = $id_kelas
             group by
                 tm.id_mapel
         ");
 
         return $query->result();
+
+        // var_dump($query->result());
+        // die();
     }
 
     public function total_nilai_persiswa($id_siswa, $id_kelas, $id_tahun)
@@ -414,14 +415,13 @@ class Nilai_model extends CI_Model
                     tn.id_kd = tk.id_kd
                 inner join tbl_matapelajaran tm on
                     tk.id_mapel = tm.id_mapel
-                inner join tb_pengajar tp on
-                    tp.id_mapel = tm.id_mapel
+                inner join tbl_jadwal_pelajaran tp on
+                    tp.mapel_id = tm.id_mapel
                 inner join tb_tahunajaran tt on
                     tp.id_tahun = tt.id_tahun
                 where
                     td.id_kelas = $id_kelas
                     and tk.jenis_penilaian = 'PTS'
-                    and tt.shared = '1'
                     and tt.id_tahun = $id_tahun
                     and td.id_siswa = $id_siswa
                 group by
@@ -445,23 +445,22 @@ class Nilai_model extends CI_Model
                     tn.id_kd = tk.id_kd
                 inner join tbl_matapelajaran tm on
                     tk.id_mapel = tm.id_mapel
-                inner join tb_pengajar tp on
-                    tp.id_mapel = tm.id_mapel
+                inner join tbl_jadwal_pelajaran tp on
+                    tp.mapel_id = tm.id_mapel
                 inner join tb_tahunajaran tt on
                     tp.id_tahun = tt.id_tahun
                 where
                     td.id_kelas = $id_kelas
                     and tk.jenis_penilaian = 'PAS'
-                    and tt.shared = '1'
                     and tt.id_tahun = $id_tahun
                     and td.id_siswa = $id_siswa
                 group by
                     tm.id_mapel) pas on
                 pas.id_mapel = tm.id_mapel
-            left join tb_pengajar tp2 on
-                tp2.id_mapel = tm.id_mapel
+            left join tbl_jadwal_pelajaran tp2 on
+                tp2.mapel_id = tm.id_mapel
             where
-                tp2.id_kelas = $id_kelas
+                tp2.kelas_id = $id_kelas
         ");
 
         return $query->row_array();

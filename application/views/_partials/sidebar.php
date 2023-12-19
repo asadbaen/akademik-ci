@@ -58,15 +58,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('kepala'); ?>" class="nav-link">
+                                <a href="<?php echo base_url('admin/profile'); ?>" class="nav-link <?php if ($menu == 'profile') echo 'active' ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Kepala Sekolah</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo base_url('admin'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>TU/Admin</p>
+                                    <p>Profile</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -239,6 +233,46 @@
                             <i class="nav-icon fas fa-cogs"></i>
                             <p>
                                 Ganti Password
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        <?php endif; ?>
+        <?php if ($this->session->userdata("level") == "guru") : ?>
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item menu-open">
+                        <a href="<?php echo base_url('guru') ?>" class="nav-link <?php if ($menu == 'dashboard') echo 'active' ?>">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item menu-open">
+                        <a href="<?php echo base_url('guru/profile') ?>" class="nav-link <?php if ($menu == 'datadiri') echo 'active' ?>">
+                            <i class="nav-icon fas fa-user-alt"></i>
+                            <p>
+                                Profile
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item menu-open">
+                        <a href="<?php echo base_url('guru/nilai') ?>" class="nav-link <?php if ($menu == 'nilai') echo 'active' ?>">
+                            <i class="nav-icon fas fa-pen-square"></i>
+                            <p>
+                                Nilai
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item menu-open">
+                        <a href="<?php echo base_url('guru/jadwal') ?>" class="nav-link <?php if ($menu == 'jadwal') echo 'active' ?>">
+                            <i class="nav-icon fas fa-pen-square"></i>
+
+                            <p>
+                                Jadwal Pelajaran
                             </p>
                         </a>
                     </li>

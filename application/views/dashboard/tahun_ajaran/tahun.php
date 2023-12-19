@@ -22,7 +22,6 @@
                         <th width="20px">No</th>
                         <th>Tahun Ajaran</th>
                         <th>Semester</th>
-                        <th>Bagikan Ke Orang Tua</th>
                         <th class="text-center" width="200px">Status</th>
                         <th class="text-center" width="100px">Aksi</th>
                     </tr>

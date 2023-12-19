@@ -3,6 +3,7 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+            <?php echo $this->session->flashdata('message'); ?>
             <div class="card col-md-12">
                 <div class="card-header">
                     <h3 class="card-title">DataTable Guru</h3>
@@ -16,7 +17,6 @@
                                 <th>No</th>
                                 <th>Nip</th>
                                 <th>Nama</th>
-                                <th>Jabatan</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Tempat Lahir</th>
@@ -31,7 +31,6 @@
                                     <td><?= $i; ?></td>
                                     <td><?= $key['nip']; ?></td>
                                     <td><?= $key['nama_guru']; ?></td>
-                                    <td><?= $key['Jabatan']; ?></td>
                                     <td><?= $key['Jenis_kelamin']; ?></td>
                                     <td><?= $key['Tanggal_lahir']; ?></td>
                                     <td><?= $key['Tempat_lahir']; ?></td>
@@ -52,7 +51,6 @@
                                 <th>No</th>
                                 <th>Nip</th>
                                 <th>Nama</th>
-                                <th>Jabatan</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Tempat Lahir</th>

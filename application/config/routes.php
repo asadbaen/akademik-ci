@@ -123,6 +123,6 @@ $route['simpan-edit-guru-kelas'] = 'GuruKelas/update_kelas_siswa';
 // route siswa
 $route['siswa'] = 'siswa/dashboard';
 // guru
-$route['guru'] = 'siswa/dashboard';
+$route['guru'] = 'guru/dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

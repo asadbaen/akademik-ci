@@ -11,17 +11,6 @@ class Presensi extends CI_Controller
         $this->load->library('form_validation');
     }
 
-    // public function isiPresensi($kelas_id)
-    // {
-    //     $data['students_by_class'] = $this->Model_siswa_kelas->getKelasSiswa($kelas_id);
-    //     $data['daftar_presensi'] = $this->Model_presensi->getDaftarPresensi();
-
-    //     $this->load->view('_partials/header.php');
-    //     $this->load->view('_partials/navbar.php');
-    //     $this->load->view('_partials/sidebar.php');
-    //     $this->load->view('dashboard/kelas/presensi/isi_presensi.php', $data);
-    //     $this->load->view('_partials/footer.php');
-    // }
 
     public function absensi()
     {

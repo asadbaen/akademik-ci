@@ -66,8 +66,6 @@ class Mapel extends CI_Controller
     {
         $id   = $this->input->get('id_mapel', TRUE);
 
-        var_dump($id);
-        die();
         if (!$id) {
             redirect('admin/mapel');
         }
@@ -76,12 +74,38 @@ class Mapel extends CI_Controller
         if (!isset($mapel)) {
             redirect('error_404');
         }
-
+        $data = $this->User_model->get_detail_admin($this->session->userdata['id_user'], $this->session->userdata['level']);
         $data = array(
+            'id_user'   => $data['id_user'],
+            'nama'      => $data['nama'],
+            'foto'     => $data['foto'] != null ? $data['foto'] : 'user-placeholder.jpg',
+            'level'     => $data['level'],
             'mapel'     => $mapel,
             'komp_dasar' => $this->MapelModel->get_kd_permapel($id),
-
+            'menu'      => 'mata pelajaran',
+            'breadcrumb' => [
+                0 => (object)[
+                    'name' => 'Dashboard',
+                    'link' => 'admin'
+                ],
+                1 => (object)[
+                    'name' => 'Mata Pelajaran',
+                    'link' => 'admin/mapel'
+                ],
+                2 => (object)[
+                    'name' => 'Kompetensi Dasar',
+                    'link' => NULL
+                ]
+            ]
         );
+
+        // var_dump($data['komp_dasar']);
+        // die();
+        // $data = array(
+        //     'mapel'     => $mapel,
+        //     'komp_dasar' => $this->MapelModel->get_kd_permapel($id),
+
+        // );
 
         $this->_rules_kd();
 
@@ -286,6 +310,16 @@ class Mapel extends CI_Controller
 
 
         redirect('admin/mapel');
+    }
+
+    public function delete_kd()
+    {
+        $kd      = $this->input->get('kd', TRUE);
+        $id_mapel   = $this->input->get('id_mapel', TRUE);
+
+        $this->MapelModel->delete_kd($kd, $id_mapel);
+        $this->session->set_flashdata('message', 'Data Kompetensi Dasar Berhasil Dihapus!');
+        redirect('admin/mapel/kd?id_mapel=' . $id_mapel);
     }
 
     private function _rules()

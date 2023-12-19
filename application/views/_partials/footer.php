@@ -182,6 +182,72 @@
         });
     });
 </script>
+
+<!-- guru/nilai -->
+<script>
+    $(document).ready(function() {
+        $('#g-kelas').change(function() {
+            const idkelas = $(this).val();
+            const idGuru = '<?= $id_guru ?>';
+            $.ajax({
+                type: 'POST',
+                url: '<?= base_url('guru/nilai/get_mapel') ?>',
+                data: {
+                    id_kelas: idkelas,
+                    id_guru: idGuru
+                },
+                success: function(response) {
+                    $('#g-mapel').html(response);
+                }
+            });
+        })
+    });
+
+    function guruSearchNilai() {
+        const idKelas = $('#g-kelas').val()
+        const idMapel = $('#g-mapel').val()
+        const idGuru = '<?= $id_guru ?>';
+        const penilaian = $('#g-penilaian').val()
+
+        // if (idKelas !== '' && idMapel !== '') {
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url('guru/nilai/data_nilai_permapel') ?>',
+            data: {
+                id_kelas: idKelas,
+                id_mapel: idMapel,
+                nilai: penilaian
+            },
+            success: function(response) {
+                $('#table-result').html(response);
+            },
+            error: function(response) {
+                $('#table-result').html(response);
+            }
+        });
+        // }
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#g-thn_ajaran').change(function() {
+            const tahun = $(this).val();
+            const guru = '<?= $id_guru ?>';
+            $.ajax({
+                type: 'POST',
+                url: '<?= base_url('guru/laporannilai/get_kelas') ?>',
+                data: {
+                    id_tahun: tahun,
+                    id_guru: guru
+                },
+                success: function(response) {
+                    $('#g-kelas').html(response);
+                }
+            });
+        })
+    });
+</script>
 </body>
 
 

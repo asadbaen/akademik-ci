@@ -25,10 +25,7 @@
                                 <label>Email</label>
                                 <input type="email" id="email" name="email" class="form-control" placeholder="email" value="<?= $guru['email']; ?>" readonly>
                             </div>
-                            <div class="form-group">
-                                <label>Jabatan</label>
-                                <input type="text" id="Jabatan" name="Jabatan" class="form-control" placeholder="isi Jabatan guru" value="<?= $guru['Jabatan']; ?>" readonly>
-                            </div>
+
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
                                 <select class="custom-select rounded-0" id="Jenis_kelamin" name="Jenis_kelamin">
